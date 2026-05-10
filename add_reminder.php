@@ -19,6 +19,11 @@ if ($_POST) {
     $early = $_POST['early_reminder_minutes'] ?: NULL;
     $repeat_type = $_POST['repeat_type'];
     $user_id = $_SESSION['user_id'];
+    $early_minutes = $_POST['early_reminder_minutes'];
+
+    if ($early_minutes === "" || $early_minutes === null) {
+        $early_minutes = "NULL";
+    }
 
     $sql = "INSERT INTO reminders 
     (user_id, title, description, email, final_time, early_reminder_minutes,repeat_type)
