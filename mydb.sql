@@ -1,5 +1,5 @@
 CREATE TABLE `reminders` (
-  `id` int(11) NOT NULL,
+  `id` int(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
   `email` varchar(255) NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE `reminders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+  `id` int(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
   `name` varchar(100) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
