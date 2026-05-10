@@ -8,15 +8,15 @@ mysqli_real_connect(
     $conn,
     "mysql-29b24fb6-esmart-reminder-system.k.aivencloud.com",
     "avnadmin",
-    getenv("DB_PASSWORD"),
+    "AVNS_FbAJ_XwSUqIgs8eajOg",
     "defaultdb",
     10007,
     NULL,
     MYSQLI_CLIENT_SSL
 );
 
-if (!$conn) {
-    die("Database connection failed");
+if ($conn->connect_error) {
+    die("DB Connection failed: " . $conn->connect_error);
 }
 
 ?>
