@@ -1,15 +1,13 @@
 <?php
+ob_start();
 include "header.php";
 include "db.php";
-
 if (!isset($_SESSION['user_id'])) {
     header("Location: index.php");
     exit();
 }
-
 $success = "";
 $error = "";
-
 if ($_POST) {
 
     $title = $_POST['title'];
