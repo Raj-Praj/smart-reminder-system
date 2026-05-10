@@ -88,7 +88,7 @@ if ($_POST) {
             <!-- EARLY REMINDER -->
             <div class="reminder-input-group">
                 <select name="early_reminder_minutes">
-                    <option value="">none</option>
+                    <option value="1">none</option>
                     <option value="5">5 minutes before</option>
                     <option value="10">10 minutes before</option>
                     <option value="30">30 minutes before</option>
