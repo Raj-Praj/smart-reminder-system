@@ -4,6 +4,7 @@ include "db.php";
 include "send_mail.php";
 
 date_default_timezone_set("Asia/Kathmandu");
+file_put_contents("cron.log", date("Y-m-d H:i:s") . " executed\n", FILE_APPEND);
 
 $now = new DateTime("now", new DateTimeZone("Asia/Kathmandu"));
 
