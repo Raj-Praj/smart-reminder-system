@@ -1,6 +1,7 @@
 name: Reminder Cron Job
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: "*/5 * * * *"
 
@@ -19,3 +20,9 @@ jobs:
 
       - name: Run reminder script
         run: php check_reminders.php
+        env:
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASS: ${{ secrets.DB_PASS }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
