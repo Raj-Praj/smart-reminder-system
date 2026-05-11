@@ -5,7 +5,7 @@ include "send_mail.php";
 
 date_default_timezone_set("Asia/Kathmandu");
 
-$now = date("Y-m-d H:i:00");
+$now = new DateTime("now", new DateTimeZone("Asia/Kathmandu"));
 
 # =========================
 # EARLY REMINDERS FIRST
@@ -19,12 +19,14 @@ $result2 = $conn->query($sql2);
 
 while($row = $result2->fetch_assoc()) {
 
-    $early_time = date(
-        'Y-m-d H:i:00',
-        strtotime($row['final_time'] . " -{$row['early_reminder_minutes']} minutes")
-    );
+    if (empty($row['final_time'])) continue;
 
-    if ($early_time <= $now) {
+    $final = new DateTime($row['final_time'], new DateTimeZone("Asia/Kathmandu"));
+
+    $early = clone $final;
+    $early->modify("-{$row['early_reminder_minutes']} minutes");
+
+    if ($early <= $now) {
 
         sendReminderEmail(
             $row['email'],
@@ -32,10 +34,10 @@ while($row = $result2->fetch_assoc()) {
             "This is your early reminder.<br><br>" . $row['description']
         );
 
-        $conn->query(
-            "UPDATE reminders 
-             SET early_sent=1 
-             WHERE id=".$row['id']
+        $conn->query("
+            UPDATE reminders 
+            SET early_sent=1 
+            WHERE id=" . $row['id']
         );
     }
 }
@@ -44,41 +46,45 @@ while($row = $result2->fetch_assoc()) {
 # FINAL REMINDERS
 # =========================
 
-$sql = "SELECT * FROM reminders 
-        WHERE final_time <= '$now'";
+$sql = "SELECT * FROM reminders";
 
 $result = $conn->query($sql);
 
 while($row = $result->fetch_assoc()) {
 
-    sendReminderEmail(
-        $row['email'],
-        "FINAL REMINDER: " . $row['title'],
-        "Your reminder time has arrived.<br><br>" . $row['description']
-    );
+    if (empty($row['final_time'])) continue;
 
-    # DAILY REMINDER
-    if ($row['repeat_type'] == 'daily') {
+    $final = new DateTime($row['final_time'], new DateTimeZone("Asia/Kathmandu"));
 
-        $next_day = date(
-            'Y-m-d H:i:00',
-            strtotime($row['final_time'] . ' +1 day')
+    if ($final <= $now) {
+
+        sendReminderEmail(
+            $row['email'],
+            "FINAL REMINDER: " . $row['title'],
+            "Your reminder time has arrived.<br><br>" . $row['description']
         );
 
-        $conn->query("
-            UPDATE reminders 
-            SET final_time='$next_day',
-                early_sent=0
-            WHERE id=".$row['id']
-        );
+        # DAILY REMINDER
+        if ($row['repeat_type'] == 'daily') {
 
-    } else {
+            $next_day = clone $final;
+            $next_day->modify("+1 day");
 
-        # ONE TIME REMINDER
-        $conn->query("
-            DELETE FROM reminders 
-            WHERE id=".$row['id']
-        );
+            $conn->query("
+                UPDATE reminders 
+                SET final_time='" . $next_day->format("Y-m-d H:i:00") . "',
+                    early_sent=0
+                WHERE id=" . $row['id']
+            );
+
+        } else {
+
+            # ONE TIME REMINDER
+            $conn->query("
+                DELETE FROM reminders 
+                WHERE id=" . $row['id']
+            );
+        }
     }
 }
 
