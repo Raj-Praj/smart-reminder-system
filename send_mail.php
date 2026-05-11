@@ -16,15 +16,15 @@ function sendReminderEmail($to, $subject, $message) {
         $mail->SMTPDebug = 2; // show debug
         $mail->Debugoutput = 'html';
 
-        $mail->isSMTP();
+       $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
 
         $mail->Username = getenv('EMAIL_USER');
         $mail->Password = getenv('EMAIL_PASS');
 
-        $mail->SMTPSecure = 'tls';
-        $mail->Port = 587;
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mail->Port = 465;
 
         $mail->Timeout = 20;
 
