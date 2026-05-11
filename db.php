@@ -1,22 +1,21 @@
 <?php
 
 $conn = mysqli_init();
-
 mysqli_ssl_set($conn, NULL, NULL, NULL, NULL, NULL);
 
-mysqli_real_connect(
+$connected = mysqli_real_connect(
     $conn,
-    "mysql-29b24fb6-esmart-reminder-system.k.aivencloud.com",
-    "avnadmin",
-    "AVNS_FbAJ_XwSUqIgs8eajOg",
-    "defaultdb",
+    getenv('DB_HOST'),
+    getenv('DB_USER'),
+    getenv('DB_PASS'),
+    getenv('DB_NAME'),
     10007,
     NULL,
     MYSQLI_CLIENT_SSL
 );
 
-if ($conn->connect_error) {
-    die("DB Connection failed: " . $conn->connect_error);
+if (!$connected) {
+    die("DB Connection failed: " . mysqli_connect_error());
 }
 
 ?>
