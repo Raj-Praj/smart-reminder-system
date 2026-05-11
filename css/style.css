@@ -1,66 +1,69 @@
+/* =========================
+   GLOBAL STYLE
+========================= */
+
 body {
-    font-family: Arial;
+    font-family: 'Segoe UI', system-ui, Arial;
     margin: 0;
-    background: #f5f7fb;
+    background: #f4f6fb;
+    color: #333;
 
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-/* TOP BAR */
+/* =========================
+   TOP BAR
+========================= */
+
 .topbar {
-    background: linear-gradient(90deg, #2c3e50, #3498db);
+    background: linear-gradient(90deg, #1f2a44, #2f80ed);
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 25px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    height: 50px;
+    padding: 14px 28px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
 
-/* LOGO */
 .logo {
-    font-size: 40px;
+    font-size: 34px;
     font-weight: bold;
     letter-spacing: 1px;
-    
 }
-.logo a{
+
+.logo a {
     color: white;
     text-decoration: none;
 }
 
-/* MENU */
 .menu a {
     color: white;
     text-decoration: none;
     margin-left: 15px;
     padding: 8px 12px;
-    border-radius: 6px;
-    transition: 0.3s;
+    border-radius: 8px;
+    transition: 0.3s ease;
 }
 
 .menu a:hover {
     background: rgba(255,255,255,0.2);
 }
 
-/* CONTAINER */
+/* =========================
+   LAYOUT
+========================= */
+
 .container {
     width: 85%;
     margin: 20px auto;
-    flex:1;
+    flex: 1;
 }
 
-/* FOOTER */
-.footer {
-    text-align: center;
-    padding: 15px;
-    background: #2c3e50;
-    color: white;
-}
-
+/* =========================
+   DASHBOARD CARDS
+========================= */
 
 .dashboard {
     display: flex;
@@ -70,11 +73,16 @@ body {
 
 .card {
     flex: 1;
-    padding: 20px;
-    border-radius: 12px;
+    padding: 22px;
+    border-radius: 16px;
     color: white;
     text-align: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
 }
 
 .card h3 {
@@ -87,330 +95,58 @@ body {
     font-weight: bold;
 }
 
-.total { background: #3498db; }
+.total { background: #2f80ed; }
 .pending { background: #f39c12; }
 .sent { background: #2ecc71; }
 
+/* =========================
+   TABLE
+========================= */
+
 table {
+    width: 100%;
     border-collapse: collapse;
     background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
 table th {
-    background: #2c3e50;
+    background: #2f80ed;
     color: white;
-}
-
-table td, table th {
-    padding: 10px;
-    text-align: center;
-}
-
-
-
-.auth-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 90vh;
-}
-
-/* AUTH BOX */
-.auth-box {
-    width: 380px;
-    overflow: hidden;
-}
-
-.hidden {
-    display: none !important;
-}
-
-.form-hidden {
-    display: none !important;
-}
-
-/* OVERLAY */
-.auth-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(6px);
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    animation: fadeIn 0.3s ease;
-    padding:20px
-}
-
-/* MODAL */
-.auth-modal {
-    width: 30%;
-    min-width: 320px;
-    height: 100vh;
-    background: white;
-    padding: 20px;
-    position: relative;
-    box-shadow: -5px 0 20px rgba(0,0,0,0.3);
-    animation: slideIn 0.4s ease;
-}
-
-/* CLOSE BUTTON */
-.close-btn {
-    position: absolute;
-    top: 1px;
-    right: 20px;
-    font-size: 26px;
-    cursor: pointer;
-    padding: 5px;
-}
-
-/* TOGGLE */
-.auth-toggle {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 15px;
-    padding: 10px;
-}
-
-.auth-toggle button {
-    padding: 8px 18px;
-    border: none;
-    border-radius: 20px;
-    background: #ddd;
-    cursor: pointer;
-}
-
-.auth-toggle button.active {
-    background: #3498db;
-    color: white;
-}
-
-.auth-modal input {
-    width: 70%;
-    padding: 12px 14px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    font-size: 14px;
-    outline: none;
-    transition: 0.3s;
-    background: #f9f9f9;
-}
-
-/* FOCUS EFFECT */
-.auth-modal input:focus {
-    border-color: #3498db;
-    background: #fff;
-    box-shadow: 0 0 0 3px rgba(52,152,219,0.15);
-}
-
-/* LABEL STYLE (optional upgrade feel) */
-.auth-modal h2 {
-    text-align: center;
-    margin-bottom: 15px;
-    color: #2c3e50;
-}
-
-/* BUTTON UPGRADE */
-.auth-modal button {
-    width: 95%;
     padding: 12px;
-    margin-top: 10px;
-    background: linear-gradient(90deg, #3498db, #2c3e50);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
 }
 
-.auth-modal button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
 }
 
-/* SMALL TEXT BELOW INPUTS (optional future use) */
-.auth-modal small {
-    color: gray;
-    font-size: 12px;
-}
-
-/* ANIMATIONS */
-@keyframes slideIn {
-    from { transform: translateX(100%); }
-    to { transform: translateX(0); }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-.input-group {
-    position: relative;
-    margin: 15px 0;
-}
-
-/* INPUT STYLE */
-.input-group input {
-    width: 100%;
-    padding: 14px 12px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background: #f9f9f9;
-    outline: none;
-    font-size: 14px;
-}
-
-/* LABEL (starts inside input) */
-.input-group label {
-    position: absolute;
-    left: 12px;
-    top: 14px;
-    color: gray;
-    font-size: 14px;
-    transition: 0.2s ease;
-    pointer-events: none;
-}
-
-/* WHEN CLICKED OR TYPED */
-.input-group input:focus + label,
-.input-group input:valid + label {
-    top: -8px;
-    left: 10px;
-    font-size: 12px;
-    background: white;
-    padding: 0 5px;
-    color: #3498db;
-}
 /* =========================
-   REMINDER FORM UI
+   BUTTONS
 ========================= */
 
-.reminder-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-}
-
-.reminder-card {
-    width: 500px;
-    background: white;
-    padding: 30px;
-    border-radius: 18px;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.08);
-}
-
-.reminder-card h2 {
-    text-align: center;
-    margin-bottom: 25px;
-    color: #2c3e50;
-}
-
-/* INPUT GROUP */
-.reminder-input-group {
-    position: relative;
-    margin-bottom: 22px;
-}
-
-/* INPUTS */
-.reminder-input-group input,
-.reminder-input-group textarea,
-.reminder-input-group select {
-    width: 100%;
-    padding: 14px 12px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    background: #f9f9f9;
-    outline: none;
-    font-size: 14px;
-    transition: 0.3s;
-}
-
-/* TEXTAREA */
-.reminder-input-group textarea {
-    min-height: 100px;
-    resize: vertical;
-}
-
-/* FOCUS EFFECT */
-.reminder-input-group input:focus,
-.reminder-input-group textarea:focus,
-.reminder-input-group select:focus {
-    border-color: #3498db;
-    background: white;
-    box-shadow: 0 0 0 3px rgba(52,152,219,0.12);
-}
-
-/* LABEL */
-.reminder-input-group label {
-    position: absolute;
-    left: 12px;
-    top: 14px;
-    color: gray;
-    background: white;
-    padding: 0 5px;
-    transition: 0.2s;
-    pointer-events: none;
-}
-
-/* FLOAT EFFECT */
-.reminder-input-group input:focus + label,
-.reminder-input-group input:valid + label,
-.reminder-input-group textarea:focus + label,
-.reminder-input-group textarea:valid + label {
-    top: -8px;
-    font-size: 12px;
-    color: #3498db;
-}
-
-/* DATETIME LABEL */
-.top-label {
-    top: -8px !important;
-    font-size: 12px;
-    color: #3498db;
-}
-
-/* BUTTON */
 .save-btn {
     width: 100%;
     padding: 14px;
     border: none;
     border-radius: 12px;
-    background: linear-gradient(90deg, #3498db, #2c3e50);
+    background: linear-gradient(135deg, #2f80ed, #1f2a44);
     color: white;
     font-size: 15px;
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.3s ease;
+    letter-spacing: 0.5px;
 }
 
 .save-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    box-shadow: 0 10px 25px rgba(47,128,237,0.3);
 }
 
-/* SUCCESS */
-.success-box {
-    background: #d4edda;
-    color: #155724;
-    padding: 12px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-
-/* ERROR */
-.error-box {
-    background: #f8d7da;
-    color: #721c24;
-    padding: 12px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
 /* DELETE BUTTON */
 .delete-btn {
     background: #e74c3c;
@@ -426,83 +162,203 @@ table td, table th {
     background: #c0392b;
 }
 
+/* =========================
+   REMINDER FORM
+========================= */
 
+.reminder-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.reminder-card {
+    width: 520px;
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.reminder-card h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #2c3e50;
+}
+
+/* INPUT GROUP */
+.reminder-input-group {
+    position: relative;
+    margin-bottom: 22px;
+}
+
+.reminder-input-group input,
+.reminder-input-group textarea,
+.reminder-input-group select {
+    width: 100%;
+    padding: 14px 12px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background: #f9f9f9;
+    outline: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.reminder-input-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.reminder-input-group input:focus,
+.reminder-input-group textarea:focus,
+.reminder-input-group select:focus {
+    border-color: #2f80ed;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(47,128,237,0.12);
+}
+
+.reminder-input-group label {
+    position: absolute;
+    left: 12px;
+    top: 14px;
+    color: gray;
+    background: white;
+    padding: 0 5px;
+    transition: 0.2s;
+    pointer-events: none;
+}
+
+.reminder-input-group input:focus + label,
+.reminder-input-group input:valid + label,
+.reminder-input-group textarea:focus + label,
+.reminder-input-group textarea:valid + label {
+    top: -8px;
+    font-size: 12px;
+    color: #2f80ed;
+}
 
 /* =========================
-   MOBILE RESPONSIVE FIX
+   AUTH MODAL
+========================= */
+
+.auth-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+.auth-box {
+    width: 380px;
+}
+
+.auth-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px;
+}
+
+.auth-modal {
+    width: 30%;
+    min-width: 320px;
+    height: 100vh;
+    background: white;
+    padding: 20px;
+    position: relative;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.3);
+}
+
+/* INPUT */
+.auth-modal input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #f9f9f9;
+}
+
+/* BUTTON */
+.auth-modal button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg, #2f80ed, #1f2a44);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    text-align: center;
+    padding: 15px;
+    background: #1f2a44;
+    color: white;
+}
+
+/* =========================
+   STATUS BOXES
+========================= */
+
+.success-box {
+    background: #d4edda;
+    color: #155724;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.error-box {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* =========================
+   MOBILE RESPONSIVE
 ========================= */
 
 @media (max-width: 768px) {
 
-    /* CONTAINER */
     .container {
         width: 95%;
     }
 
-    /* TOPBAR STACK */
     .topbar {
         flex-direction: column;
-        height: auto;
-        padding: 10px;
         text-align: center;
     }
 
-    .menu {
-        margin-top: 10px;
-    }
-
-    .menu a {
-        display: inline-block;
-        margin: 5px;
-    }
-
-    /* DASHBOARD STACK */
     .dashboard {
         flex-direction: column;
     }
 
-    .card {
-        margin-bottom: 10px;
-    }
-
-    /* TABLE SCROLL FIX */
     table {
         display: block;
         overflow-x: auto;
         white-space: nowrap;
     }
 
-    /* AUTH MODAL FULL SCREEN */
-    .auth-modal {
-        width: 95%;
-        height: auto;
-        min-width: unset;
-        border-radius: 12px;
-    }
-
-    /* FIX INPUT WIDTH (IMPORTANT BUG FIX) */
-    .auth-modal input {
-        width: 100%;
-    }
-
-    .auth-modal button {
-        width: 100%;
-    }
-
-    /* REMINDER FORM */
     .reminder-card {
         width: 95%;
-        padding: 20px;
     }
 
-    /* BUTTON TEXT SMALLER */
-    .save-btn {
-        font-size: 14px;
-    }
-
-    /* DELETE BUTTON WRAP */
-    .delete-btn {
-        display: inline-block;
-        margin-top: 5px;
+    .auth-modal {
+        width: 95%;
     }
 }
