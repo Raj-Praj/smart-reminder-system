@@ -18,13 +18,13 @@ function sendReminderEmail($to, $subject, $message) {
         $mail->SMTPAuth = true;
 
         // 🔴 YOUR EMAIL DETAILS
-        $mail->Username = 'esmart.reminder.system@gmail.com';
-        $mail->Password = 'vzgntjgalkegtkqv';
+        $mail->Username = getenv('EMAIL_USER');
+        $mail->Password = getenv('EMAIL_PASS');
 
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
-        $mail->setFrom('esmart.reminder.system@gmail.com', 'Smart Reminder System');
+        $mail->setFrom(getenv('EMAIL_USER'),'Smart Reminder System');
         $mail->addAddress($to);
 
         $mail->isHTML(true);
