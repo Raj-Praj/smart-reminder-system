@@ -1,5 +1,7 @@
-<?php
 
+
+<?php?>
+/*
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -45,4 +47,52 @@ function sendReminderEmail($to, $subject, $message) {
         echo "ERROR: " . $mail->ErrorInfo;
         return false;
     }
+}
+*/
+<?php
+
+function sendReminderEmail($to, $subject, $message) {
+
+    $apiKey = getenv('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');
+
+    $data = [
+        "sender" => [
+            "name" => "Smart Reminder System",
+            "email" => "esmart.reminder.system@gmail.com"
+        ],
+        "to" => [
+            [
+                "email" => $to
+            ]
+        ],
+        "subject" => $subject,
+        "htmlContent" => $message
+    ];
+
+    $ch = curl_init();
+
+    curl_setopt($ch, CURLOPT_URL, "https://api.brevo.com/v3/smtp/email");
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        "accept: application/json",
+        "api-key: $apiKey",
+        "content-type: application/json"
+    ]);
+
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $response = curl_exec($ch);
+
+    if(curl_errno($ch)) {
+        echo curl_error($ch);
+        return false;
+    }
+
+    curl_close($ch);
+
+    echo $response;
+
+    return true;
 }
