@@ -50,12 +50,12 @@ function sendReminderEmail($to, $subject, $message) {
 
 function sendReminderEmail($to, $subject, $message) {
 
-    $apiKey = getenv('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');
+    $apiKey = getenv('BREVO_API_KEY');
 
     $data = [
         "sender" => [
             "name" => "Smart Reminder System",
-            "email" => "esmart.reminder.system@gmail.com"
+            "email" => getenv('EMAIL_USER')
         ],
         "to" => [
             [
@@ -74,7 +74,7 @@ function sendReminderEmail($to, $subject, $message) {
 
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
         "accept: application/json",
-        "api-key: $apiKey",
+        "api-key: " . $apiKey,
         "content-type: application/json"
     ]);
 
