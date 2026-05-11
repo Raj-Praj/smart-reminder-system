@@ -17,14 +17,14 @@ function sendReminderEmail($to, $subject, $message) {
         $mail->Debugoutput = 'html';
 
        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
+        $mail->Host = 'smtp-relay.brevo.com';
         $mail->SMTPAuth = true;
 
-        $mail->Username = getenv('EMAIL_USER');
-        $mail->Password = getenv('EMAIL_PASS');
+        $mail->Username = getenv('BREVO_USER');
+        $mail->Password = getenv('BREVO_PASS');
 
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-        $mail->Port = 465;
+        $mail->Port = 587;
 
         $mail->Timeout = 20;
 
