@@ -3,7 +3,7 @@ name: Reminder Cron Job
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/60 * * * *"
+    - cron: "*/5 * * * *"
 
 jobs:
   run-reminder:
